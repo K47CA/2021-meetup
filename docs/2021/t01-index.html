@@ -252,7 +252,7 @@
     <div class="string"></div>
   </div>
     <div id="timer"></div>
-    <h1>4th of july counter</h1>
+    <h1>From 14h30 on 17th of april, 2021</h1>
   </div>
   <footer>
     <p>made by <a href="https://codepen.io/juliepark"> julie</a> ♡
@@ -273,22 +273,12 @@
       const today = new Date().getTime();
 
       // get the difference
-      let diff;
-      if(month > 6) {
-        diff = fourthOfJulyNextYear - today;
-        //diff = fourthOfJulyNextYear - today;
-      } else {
-        diff = seventeenthOfApril - today;
-        //diff = fourthOfJuly - today;
-      }
-
-
-
+      let diff = seventeenthOfApril - today;
 
       // math
       let days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      let hours = 16 + Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      let hours = 14 + Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      let minutes = 30 + Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
       let seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
       // display

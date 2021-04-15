@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=device-dpi, initial-scale=0.6, maximum-scale=1, user-scalable=yes" />
+  <title>VNU - K47CA | Countdown Timer</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css?family=Lato:400,700|Montserrat:900");
+    html {
+      display: grid;
+      min-height: 100%;
+    }
+
+    body {
+      display: grid;
+      background: #183059;
+    }
+
+    .container {
+      position: relative;
+      margin: auto;
+      overflow: hidden;
+      width: 650px;
+      height: 480px;
+    }
+
+    h1 {
+      font-family: "Lato", sans-serif;
+      text-align: center;
+      margin-top: 2em;
+      font-size: 1em;
+      text-transform: uppercase;
+      letter-spacing: 5px;
+      color: #F6F4F3;
+    }
+
+    #timer {
+      color: #F6F4F3;
+      text-align: center;
+      text-transform: uppercase;
+      font-family: "Lato", sans-serif;
+      font-size: 0.7em;
+      letter-spacing: 5px;
+      margin-top: 25%;
+    }
+
+    .days, .hours, .minutes, .seconds {
+      display: inline-block;
+      padding: 20px;
+      width: 100px;
+      border-radius: 5px;
+    }
+
+    .days {
+      background: #EF2F3C;
+    }
+
+    .hours {
+      background: #F6F4F3;
+      color: #183059;
+    }
+
+    .minutes {
+      background: #276FBF;
+    }
+
+    .seconds {
+      background: #F0A202;
+    }
+    .numbers {
+      font-family: "Montserrat", sans-serif;
+      color: #183059;
+      font-size: 4em;
+    }
+
+    .white {
+      position: absolute;
+      background: #F6F4F3;
+      height: 85px;
+      width: 75px;
+      left: 30%;
+      top: 2%;
+    }
+    .white .triangle {
+      border-bottom: 14px solid #F6F4F3;
+    }
+    .white .string {
+      background: #F6F4F3;
+      border: 1px solid #F6F4F3;
+    }
+
+    .red {
+      position: absolute;
+      background: #EF2F3C;
+      left: 18%;
+      top: 9%;
+      height: 65px;
+      width: 70px;
+    }
+    .red .triangle {
+      border-bottom: 14px solid #EF2F3C;
+    }
+    .red .string {
+      background: #EF2F3C;
+      border: 1px solid #EF2F3C;
+    }
+
+    .blue {
+      position: absolute;
+      background: #276FBF;
+      height: 80px;
+      width: 80px;
+      left: 60%;
+      top: 5%;
+    }
+    .blue .triangle {
+      border-bottom: 14px solid #276FBF;
+    }
+    .blue .string {
+      background: #276FBF;
+      border: 1px solid #276FBF;
+    }
+
+    .balloon {
+      border: 1px solid #000;
+      border-radius: 50% 50% 50% 50%/40% 40% 60% 60%;
+      z-index: 2;
+    }
+
+    .eye {
+      position: absolute;
+      width: 7px;
+      height: 7px;
+      top: 40%;
+      left: 22%;
+      background: #000;
+      border-radius: 50%;
+    }
+    .eye:after {
+      content: "";
+      left: 35px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #000;
+      position: absolute;
+    }
+
+    .mouth {
+      position: absolute;
+      top: 45%;
+      left: 43%;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+    }
+
+    .happy {
+      border: 2px solid;
+      border-color: transparent #000 #000 transparent;
+      transform: rotate(45deg);
+    }
+
+    .triangle {
+      position: absolute;
+      left: 40%;
+      bottom: -10%;
+      width: 0;
+      height: 0;
+      border-left: 7px solid transparent;
+      border-right: 7px solid transparent;
+    }
+
+    .string {
+      position: absolute;
+      height: 70px;
+      width: 1px;
+      left: 48%;
+      top: 100%;
+      z-index: -1;
+    }
+
+    .star {
+      width: 20px;
+      height: 20px;
+      background: #F6F4F3;
+      -webkit-clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    }
+
+    .star-red {
+      width: 30px;
+      height: 30px;
+      margin-left: 51px;
+      margin-top: -5px;
+      background: #EF2F3C;
+      -webkit-clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    }
+
+    footer {
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      text-transform: uppercase;
+      padding: 10px;
+      font-family: "Lato", sans-serif;
+      font-size: 0.7em;
+    }
+    footer p {
+      letter-spacing: 3px;
+      color: #EF2F3C;
+    }
+    footer a {
+      color: #F6F4F3;
+      text-decoration: none;
+    }
+    footer a:hover {
+      color: #276FBF;
+    }
+	
+	time {
+	  display: block;
+	  text-align: center;
+	}
+	time canvas {
+	  width: 90px;
+	  height: 90px;
+	}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="balloon white">
+      <div class="star-red"></div>
+    <div class="face">
+      <div class="eye"></div>
+      <div class="mouth happy"></div>
+    </div>
+    <div class="triangle"></div>
+    <div class="string"></div>
+  </div>
+
+  <div class="balloon red">
+    <div class="star"></div>
+    <div class="face">
+      <div class="eye"></div>
+      <div class="mouth happy"></div>
+    </div>
+    <div class="triangle"></div>
+    <div class="string"></div>
+  </div>
+
+  <div class="balloon blue">
+    <div class="star"></div>
+    <div class="face">
+      <div class="eye"></div>
+      <div class="mouth happy"></div>
+    </div>
+    <div class="triangle"></div>
+    <div class="string"></div>
+  </div>
+    <div id="timer"></div>
+    <h1>From 14h30 on 17th of april, 2021</h1>
+		
+    <time>
+	  <canvas id="days" width="80" height="80"></canvas>
+	  <canvas id="hours" width="80" height="80"></canvas>
+	  <canvas id="minutes" width="80" height="80"></canvas>
+	  <canvas id="seconds" width="80" height="80"></canvas>
+	  <canvas id="milliseconds" width="80" height="80"></canvas>
+    </time>
+  </div>
+  <footer>
+    <p>made by <a href="https://codepen.io/juliepark"> julie</a> & <a href="https://codepen.io/mjswensen"> Matt Swensen</a> & <a href="https://github.com/K47CA"> Vu.Doan</a> ♡
+  </footer>
+  <script>
+    const year = new Date().getFullYear();
+    const seventeenthOfApril = new Date(year, 3,17).getTime();
+    //const fourthOfJuly = new Date(year, 6,4).getTime();
+    const seventeenthOfAprilNextYear = new Date(year + 1, 6,4).getTime();
+    //const fourthOfJulyNextYear = new Date(year + 1, 6, 4).getTime();
+    
+    const month = new Date().getMonth();
+
+    // countdown
+    let timer = setInterval(function() {
+
+      // get today's date
+      const today = new Date().getTime();
+
+      // get the difference
+      let diff = seventeenthOfApril - today;
+
+      // math
+      let days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      let hours = 14 + Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      let minutes = 30 + Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      let seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+      // display
+      document.getElementById("timer").innerHTML =
+        "<div class=\"days\"> \
+      <div class=\"numbers\">" + days + "</div>days</div> \
+    <div class=\"hours\"> \
+      <div class=\"numbers\">" + hours + "</div>hours</div> \
+    <div class=\"minutes\"> \
+      <div class=\"numbers\">" + minutes + "</div>minutes</div> \
+    <div class=\"seconds\"> \
+      <div class=\"numbers\">" + seconds + "</div>seconds</div> \
+    </div>";
+
+    }, 1000);
+	(function() {
+
+	  function clear(ctx) { ctx.clearRect(0, 0, 80, 80); }
+
+	  function setTrack(ctx) {
+		ctx.strokeStyle = 'hsla(2, 8%, 46%, 0.45)';
+		ctx.lineWidth = 4;
+		ctx.beginPath();
+		ctx.arc(36, 36, 27, 0, Math.PI*2);
+		ctx.stroke();
+	  }
+
+	  function setTime(ctx, until, now, total) {
+		ctx.strokeStyle = 'hsl(2, 8%, 46%)';
+		ctx.lineWidth = 8;
+		ctx.beginPath();
+		ctx.arc(
+		  36,
+		  36,
+		  27,
+		  Math.PI/-2,
+		  ( Math.PI * 2 ) * ( ( until - now % total ) / total ) + ( Math.PI / -2 ),
+		  false
+		);
+		ctx.stroke();
+	  }
+
+	  function numberOfDays(year, month) {
+		var d = new Date(year, month, 0);
+		return d.getDate();
+	  }
+
+	  var d = document.getElementById('days').getContext('2d'),
+		h = document.getElementById('hours').getContext('2d'),
+		mi = document.getElementById('minutes').getContext('2d'),
+		s = document.getElementById('seconds').getContext('2d'),
+		ms = document.getElementById('milliseconds').getContext('2d'),
+		grad = new Date(2021, 4, 17, 14, 30, 0, 0, 0),
+		monthDays = {
+		  cache: {},
+		  getTotalDaysInMonth: function(year, month) {
+			if (!this.cache[year]) {
+			  this.cache[year] = {};
+			}
+			if (!this.cache[year][month]) {
+			  this.cache[year][month] = (new Date(year, month+1, 0)).getDate();
+			}
+			return this.cache[year][month];
+		  }
+		};
+
+	  function set() {
+
+		var today = new Date(),
+		  daysThisMonth = monthDays.getTotalDaysInMonth(today.getFullYear(), today.getMonth());
+
+		clear(d);
+		setTrack(d);
+		setTime(d, grad.getDate(), today.getDate(), daysThisMonth);
+
+		clear(h);
+		setTrack(h);
+		setTime(h, grad.getHours(), today.getHours(), 24);
+
+		clear(mi);
+		setTrack(mi);
+		setTime(mi, grad.getMinutes(), today.getMinutes(), 60);
+
+		clear(s);
+		setTrack(s);
+		setTime(s, grad.getSeconds(), today.getSeconds(), 60);
+
+		clear(ms);
+		setTrack(ms);
+		setTime(ms, grad.getMilliseconds(), today.getMilliseconds(), 1000);
+
+		requestAnimationFrame(set);
+
+	  }
+
+	  requestAnimationFrame(set);
+
+	})();
+  </script>
+</body>
+</html>

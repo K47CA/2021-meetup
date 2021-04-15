@@ -275,42 +275,6 @@
     <p>made by <a href="https://codepen.io/juliepark"> julie</a> & <a href="https://codepen.io/mjswensen"> Matt Swensen</a> & <a href="https://vnu-k47ca.github.io/2021-albums"> Vu.Doan</a> ♡
   </footer>
   <script>
-    const year = new Date().getFullYear();
-    const seventeenthOfApril = new Date(year, 3,17).getTime();
-    //const fourthOfJuly = new Date(year, 6,4).getTime();
-    const seventeenthOfAprilNextYear = new Date(year + 1, 6,4).getTime();
-    //const fourthOfJulyNextYear = new Date(year + 1, 6, 4).getTime();
-    
-    const month = new Date().getMonth();
-
-    // countdown
-    let timer = setInterval(function() {
-
-      // get today's date
-      const today = new Date().getTime();
-
-      // get the difference
-      let diff = seventeenthOfApril - today;
-
-      // math
-      let days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      let hours = 14 + Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      let minutes = 30 + Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-      let seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-      // display
-      document.getElementById("timer").innerHTML =
-        "<div class=\"days\"> \
-      <div class=\"numbers\">" + days + "</div>days</div> \
-    <div class=\"hours\"> \
-      <div class=\"numbers\">" + hours + "</div>hours</div> \
-    <div class=\"minutes\"> \
-      <div class=\"numbers\">" + minutes + "</div>minutes</div> \
-    <div class=\"seconds\"> \
-      <div class=\"numbers\">" + seconds + "</div>seconds</div> \
-    </div>";
-
-    }, 1000);
 	(function() {
 
 	  function clear(ctx) { ctx.clearRect(0, 0, 80, 80); }
@@ -348,7 +312,7 @@
 		mi = document.getElementById('minutes').getContext('2d'),
 		s = document.getElementById('seconds').getContext('2d'),
 		ms = document.getElementById('milliseconds').getContext('2d'),
-		grad = new Date(2021, 4, 17, 14, 30, 0, 0, 0),
+		grad = new Date(2021, 3, 17, 14, 30, 0, 0, 0),
 		monthDays = {
 		  cache: {},
 		  getTotalDaysInMonth: function(year, month) {
@@ -392,6 +356,36 @@
 	  }
 
 	  requestAnimationFrame(set);
+	  
+	  const goldenMoment = grad.getTime();
+	  // countdown
+    let timer = setInterval(function() {
+
+      // get today's date
+      const today = new Date().getTime();
+
+      // get the difference
+      let diff = goldenMoment - today;
+
+      // math
+      let days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      let hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      let seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+      // display
+      document.getElementById("timer").innerHTML =
+        "<div class=\"days\"> \
+      <div class=\"numbers\">" + days + "</div>days</div> \
+    <div class=\"hours\"> \
+      <div class=\"numbers\">" + hours + "</div>hours</div> \
+    <div class=\"minutes\"> \
+      <div class=\"numbers\">" + minutes + "</div>minutes</div> \
+    <div class=\"seconds\"> \
+      <div class=\"numbers\">" + seconds + "</div>seconds</div> \
+    </div>";
+
+    }, 1000);
 
 	})();
   </script>
